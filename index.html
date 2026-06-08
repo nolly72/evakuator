@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эвакуатор 24/7 | Быстрая помощь</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo"><i class="fa-solid fa-truck-pickup yellow-text"></i><span>Эвакуатор<b class="yellow-text">MSK</b></span></div>
+            <nav class="nav"><a href="#calc">Калькулятор</a></nav>
+            <a href="tel:+79991234567" class="phone-btn"><i class="fa-solid fa-phone"></i> +7 (999) 123-45-67</a>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">Работаем круглосуточно 24/7</span>
+                <h1>Эвакуация авто от <span class="yellow-text">1 500 ₽</span></h1>
+                <p>Подача спецтехники от 15 минут. Бережная погрузка. Любая сложность.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="openOrderModal()"><i class="fa-solid fa-bolt"></i> Вызвать эвакуатор</button>
+                    <a href="#calc" class="btn btn-secondary">Рассчитать стоимость</a>
+                </div>
+            </div>
+            <div class="hero-features">
+                <div class="feature-card"><i class="fa-solid fa-clock"></i><h3>15 минут</h3><p>Прибытие</p></div>
+                <div class="feature-card"><i class="fa-solid fa-shield-halved"></i><h3>100% Страховка</h3><p>Безопасно</p></div>
+                <div class="feature-card"><i class="fa-solid fa-credit-card"></i><h3>Любая оплата</h3><p>Карты, СБП</p></div>
+            </div>
+        </div>
+    </section>
+    <section id="calc" class="calc-section">
+        <div class="container">
+            <h2 class="section-title">Онлайн-калькулятор</h2>
+            <div class="calc-wrapper">
+                <div class="calc-form">
+                    <div class="form-group">
+                        <label>Тип транспорта:</label>
+                        <select id="vehicle-type" onchange="calculatePrice()">
+                            <option value="1500">Легковой автомобиль</option>
+                            <option value="2000">Внедорожник / Кроссовер</option>
+                            <option value="2500">Коммерческий транспорт</option>
+                            <option value="1200">Мотоцикл</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Расстояние за городом (км):</label>
+                        <input type="number" id="distance" value="0" min="0" oninput="calculatePrice()">
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label"><input type="checkbox" id="blocked-wheels" onchange="calculatePrice()"> Заблокированы колеса (+500 ₽)</label>
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <h3>Стоимость:</h3>
+                    <div class="price-display"><span id="total-price">1500</span> ₽</div>
+                    <button class="btn btn-primary full-width" onclick="openOrderModal()">Заказать по этой цене</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle" onclick="toggleChat()"><i class="fa-solid fa-comments"></i><span class="pulse-ring"></span></button>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <i class="fa-solid fa-robot"></i>
+                <div><h4>Помощник Эвакуации</h4><p>Онлайн • Ответит за 10 секунд</p></div>
+                <button class="close-chat" onclick="toggleChat()">&times;</button>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-options" id="chat-options"></div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="order-modal">
+        <div class="modal">
+            <button class="close-modal" onclick="closeOrderModal()">&times;</button>
+            <h3>Вызов эвакуатора</h3>
+            <p>Оставьте телефон, диспетчер перезвонит через 1 минуту</p>
+            <form id="fast-order-form" onsubmit="handleFormSubmit(event)">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="+7 (___) ___-__-__" required>
+                <input type="text" placeholder="Где вы находитесь?" required>
+                <button type="submit" class="btn btn-primary full-width">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
